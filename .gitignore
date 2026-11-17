@@ -1,0 +1,20 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Env / secrets
+.env
+.env.*
+
+# IDE
+.idea/
+
+# Claude Code service files
+.claude/
+.agents/
+skills-lock.json
