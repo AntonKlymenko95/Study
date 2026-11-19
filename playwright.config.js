@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
+import {defineConfig, devices, test} from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({path:`.env`});
 
@@ -42,7 +42,8 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'] }, viewport:{width:800, height:600}
+
     },
 
     // {

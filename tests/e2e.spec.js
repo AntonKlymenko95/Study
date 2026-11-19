@@ -1,10 +1,14 @@
 import { test } from '@playwright/test';
+
+import {newUser1} from '../data/testData';
+import {cardData} from '../data/testData';
+
 import {RegisterPage} from '../page-object/Register.page';
 import {LoginPage} from '../page-object/Login.page';
 import {CatalogPage} from '../page-object/Catalog.page';
-import {newUser1} from '../data/testData';
 import {CardPage} from '../page-object/Card.page';
 import {CheckoutPage} from '../page-object/Checkout.page';
+import {MyAccountPage} from '../page-object/MyAccount.page';
 
 test.setTimeout(50 * 1000);
 test('test', async ({ page }) => {
@@ -12,6 +16,7 @@ test('test', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const catalogPage = new CatalogPage(page);
     const checkoutPage = new CheckoutPage(page);
+    const myAccountPage = new MyAccountPage(page);
 
     await registerPage.navigate();
     await registerPage.fillRegistrationForm(newUser1);
@@ -22,6 +27,9 @@ test('test', async ({ page }) => {
     await cardPage.compareProductDetails();
     await cardPage.checkTotalPrice();
 
-    await checkoutPage.fillPaymentData();
+    await checkoutPage.fillPaymentData(cardData.cardNumber, cardData.cardDate, cardData.cardCVV);
+    await checkoutPage.successOrderMessage();
+    await checkoutPage.goToMyAccount();
 
+    await myAccountPage.checkFinalOrder(catalogPage.tabletPriceValue, catalogPage.coffeMachinePriceValue);
 });

@@ -9,3 +9,9 @@ export const newUser1 = {
     street: `Heroyv Krut 28`,
     zipCode: `65074`,
 }
+
+export const cardData = {
+    cardNumber: process.env.CARD_NUMBER,
+    cardDate: process.env.CARD_DATE,
+    cardCVV: process.env.CARD_CVV
+}
