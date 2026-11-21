@@ -32,4 +32,6 @@ test('test', async ({ page }) => {
     await checkoutPage.goToMyAccount();
 
     await myAccountPage.checkFinalOrder(catalogPage.tabletPriceValue, catalogPage.coffeMachinePriceValue);
+    await myAccountPage.checkTwoItems();
+    await myAccountPage.logout();
 });
