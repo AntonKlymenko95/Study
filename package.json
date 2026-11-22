@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
+    "api": "npx playwright test --project=api-tests",
     "test UI": "npx playwright test --ui"
   },
   "private": true,

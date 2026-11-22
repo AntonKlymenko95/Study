@@ -16,3 +16,14 @@ export const cardData = {
     cardDate: process.env.CARD_DATE,
     cardCVV: faker.finance.creditCardCVV()
 }
+
+export const APIDataPost = {
+    title: 'Hello World',
+    body: 'Test body',
+    userId: 1,
+}
+
+export const APIDataPathc = {
+    title: 'Hello AQA',
+
+}

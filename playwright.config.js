@@ -42,9 +42,15 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testMatch: 'e2e.spec.js',
       use: { ...devices['Desktop Chrome'] }, viewport:{width:800, height:600}
 
     },
+    {name:'api-tests',
+    testMatch: 'API.spec.js',
+    use: {
+      baseURL: process.env.API_BASE_URL,
+    }}
 
     // {
     //   name: 'firefox',
