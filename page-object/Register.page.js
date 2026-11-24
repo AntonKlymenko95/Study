@@ -13,8 +13,8 @@ export class RegisterPage {
         this.zipCodeField = page.locator(`[id="register-zip"]`);
         this.submitRegistration = page.locator (`[id="register-button"]`);
     }
-    async navigate (event) {
-        await this.page.goto('https://aqa-app.vercel.app/login')
+    async openLoginPage (event) {
+        await this.page.goto('/login')
     }
     async fillRegistrationForm(testData) {
         await this.registerBtn.waitFor();
