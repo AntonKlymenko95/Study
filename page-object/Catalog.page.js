@@ -1,5 +1,4 @@
 import {newUser1} from "../data/testData";
-import {expect} from "@playwright/test";
 export class CatalogPage {
     constructor(page) {
         this.page = page;
@@ -12,11 +11,6 @@ export class CatalogPage {
 
         this.tabletPrice = page.locator(`[id="product-price-5"]`);
         this.coffeMachinePrice = page.locator(`[id="product-price-6"]`);
-
-        this.tabletNameValue = ``;
-        this.coffeMachineNameValue = ``;
-        this.tabletPriceValue = ``;
-        this.coffeMachinePriceValue = ``;
     }
 
     async selectProduct() {
@@ -24,17 +18,24 @@ export class CatalogPage {
         await this.tabletProduct.click({delay: 2000});
         await this.page.waitForLoadState(`networkidle`);
         await this.cardCount.waitFor();
-        await expect(this.cardCount).toBeVisible();
-        await expect(this.cardCount).toContainText(`2`, {timeout: 3000});
-        await this.saveProductinfo();
+        const itemsInfo = await this.getProductinfo();
+        return itemsInfo;
+    }
+
+    async gotoCard() {
         await this.cardCount.click();
     }
 
-    async saveProductinfo() {
-        this.tabletNameValue = await this.tabletName.innerText();
-        this.tabletPriceValue = await this.tabletPrice.innerText();
-        this.coffeMachineNameValue = await this.coffeMachineName.innerText();
-        this.coffeMachinePriceValue = await this.coffeMachinePrice.innerText();
-
+    async getProductinfo() {
+        return {
+            firstProduct: {
+                name: await this.tabletName.innerText(),
+                price: await this.tabletPrice.innerText(),
+            },
+            secondProduct: {
+                name: await this.coffeMachineName.innerText(),
+                price: await this.coffeMachinePrice.innerText(),
+            }
+        }
     }
 }

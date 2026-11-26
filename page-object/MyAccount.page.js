@@ -1,4 +1,3 @@
-import {expect} from "@playwright/test";
 
 export class MyAccountPage {
     constructor(page) {
@@ -8,19 +7,9 @@ export class MyAccountPage {
         this.totalAmountField = page.locator ('#account-order-0 p' , {hasText: 'Total Amount:'});
         this.logoutButton = page.locator ('[id="account-logout-button"]');
     }
-    async checkFinalOrder(firstItemPrice, lastItemPrice) {
-        const totalPrice = Number (firstItemPrice.replace ('$', '')) + Number (lastItemPrice.replace ('$', ''))
-        console.log(`Total Price`);
-        await expect(this.totalAmountField) .toContainText (`$${totalPrice}`);
-    }
-    async checkTwoItems(firstItemPrice, lastItemPrice) {
-        await expect(this.items.first()).toBeVisible ();
-        await expect(this.items.last()).toBeVisible ();
-        await expect(this.logoutButton).toBeEnabled();
-    }
+
     async logout() {
         await this.logoutButton.click ();
     }
-
 }
 
